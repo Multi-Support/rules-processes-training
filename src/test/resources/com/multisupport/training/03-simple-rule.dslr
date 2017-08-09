@@ -1,0 +1,13 @@
+package com.multisupport.training
+
+import com.multisupport.training.model.Item
+
+expander 02-dictionary.dsl
+
+rule "Print item with price over 22 (natural language)"
+when
+    We have an item named i
+    - it has a price over 22.0
+then
+    Log item i's id
+end

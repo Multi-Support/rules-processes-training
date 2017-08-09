@@ -1,0 +1,37 @@
+template header
+  priceLow
+  priceHigh
+  qtyLow
+  qtyHigh
+  log
+  discCode
+
+package com.multisupport.templates;
+
+import com.multisupport.training.model.Item;
+import com.multisupport.training.model.Order;
+import com.multisupport.training.model.OrderItem;
+
+rule "No discount applied"
+salience -1
+when
+    o: Order(discountCode == null)
+then
+    System.out.println("no discount");
+end
+
+template "discountTables"
+
+rule "Discount bracket_@{row.rowNumber}"
+when
+    o: Order($items: items, discountCode == null)
+    exists(OrderItem(
+        item.price >= @{priceLow}, item.price < @{priceHigh}, 
+        quantity >= @{qtyLow}, quantity < @{qtyHigh}
+    ) from $items)
+then
+    System.out.println("@{log}");
+    o.setDiscountCode("@{discCode}");
+end
+
+end template

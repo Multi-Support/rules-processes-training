@@ -1,0 +1,36 @@
+package com.multisupport.training.adhoc;
+
+import org.kie.api.runtime.process.WorkflowProcessInstance;
+import org.jbpm.workflow.instance.node.DynamicNodeInstance;
+
+import com.multisupport.training.KieAdHoc;
+
+rule "init rule"
+ruleflow-group "ad-hoc-sub"
+when
+    wf: WorkflowProcessInstance($nodes: nodeInstances)
+    dn: DynamicNodeInstance(nodeName == "ad-hoc-sub") from $nodes
+    eval(wf.getVariable("processVar1") == null)
+then
+    KieAdHoc.addHumanTask(dn, kcontext, "decide what's next", "inVar1", wf.getVariable("processVar1"));
+end
+
+rule "execute something"
+ruleflow-group "ad-hoc-sub"
+when
+    wf: WorkflowProcessInstance($nodes: nodeInstances, $var1: getVariable("processVar1") != null)//, $var1 == "SOME ACTUAL VALUE")
+    dn: DynamicNodeInstance(nodeName == "ad-hoc-sub") from $nodes
+then
+    KieAdHoc.addHumanTask(dn, kcontext, "execute action", "inVar1", wf.getVariable("processVar1"));
+end
+
+rule "completion condition"
+ruleflow-group "ad-hoc-sub"
+when
+    wf: WorkflowProcessInstance($nodes: nodeInstances, $var2: getVariable("processVar2") != null)
+    dn: DynamicNodeInstance(nodeName == "ad-hoc-sub") from $nodes
+    Integer(intValue > 10) from $var2
+then
+    KieAdHoc.completeAdHocProcess(dn, "completed", Boolean.TRUE);
+end
+

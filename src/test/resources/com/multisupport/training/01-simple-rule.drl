@@ -1,0 +1,10 @@
+package com.multisupport.training
+
+import com.multisupport.training.model.Item
+
+rule "Print item with price over 22"
+when
+    i: Item(price > 22.0)
+then
+    System.out.println("Item found: " + i.getId());
+end

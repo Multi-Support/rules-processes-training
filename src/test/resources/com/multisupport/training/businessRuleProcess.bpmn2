@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_VZI-cHu5EeKQSp7Ms2hIBQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_processVarItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_inputItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__5_somethingInputItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__5_ruleExecutionInputItem" structureRef="String"/>
+  <bpmn2:process id="com.multisupport.training.businessRuleProcess" drools:packageName="com.multisupport.training" name="businessRuleProcess" isExecutable="true">
+    <bpmn2:property id="processVar" itemSubjectRef="_processVarItem"/>
+    <bpmn2:property id="input" itemSubjectRef="_inputItem"/>
+    <bpmn2:startEvent id="_1" drools:bgcolor="#9acd32" drools:selectable="true" name="start">
+      <bpmn2:outgoing>_1_2</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="_2" drools:selectable="true" drools:scriptFormat="http://www.java.com/java" name="human task">
+      <bpmn2:incoming>_1_2</bpmn2:incoming>
+      <bpmn2:outgoing>_2_3</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_VZJlgHu5EeKQSp7Ms2hIBQ">
+        <bpmn2:dataInput id="_2_NotCompletedReassignInput" name="NotCompletedReassign" itemSubjectRef="__5_somethingInputItem" />
+        <bpmn2:dataInput id="_2_NotStartedReassignInput" name="NotStartedReassign" itemSubjectRef="__5_somethingInputItem" />
+        <bpmn2:dataInput id="_2_NotCompletedNotifyInput" name="NotCompletedNotify" itemSubjectRef="__5_somethingInputItem" />
+        <bpmn2:dataInput id="_2_NotStartedNotifyInput" name="NotStartedNotify" itemSubjectRef="__5_somethingInputItem" />
+        <bpmn2:inputSet id="_VZJlgXu5EeKQSp7Ms2hIBQ">
+          <bpmn2:dataInputRefs>_2_NotCompletedReassignInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_2_NotStartedReassignInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_2_NotCompletedNotifyInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_2_NotStartedNotifyInput</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet></bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_VZJlgnu5EeKQSp7Ms2hIBQ">
+        <bpmn2:targetRef>_2_NotCompletedReassignInput</bpmn2:targetRef>
+        <bpmn2:assignment id="_VZJlg3u5EeKQSp7Ms2hIBQ">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_VZJlhHu5EeKQSp7Ms2hIBQ"><![CDATA[]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_VZJlhXu5EeKQSp7Ms2hIBQ">_2_NotCompletedReassignInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_VZJlhnu5EeKQSp7Ms2hIBQ">
+        <bpmn2:targetRef>_2_NotStartedReassignInput</bpmn2:targetRef>
+        <bpmn2:assignment id="_VZJlh3u5EeKQSp7Ms2hIBQ">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_VZJliHu5EeKQSp7Ms2hIBQ"><![CDATA[[users:boss|groups:]@[6h]]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_VZJliXu5EeKQSp7Ms2hIBQ">_2_NotStartedReassignInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_VZJlinu5EeKQSp7Ms2hIBQ">
+        <bpmn2:targetRef>_2_NotCompletedNotifyInput</bpmn2:targetRef>
+        <bpmn2:assignment id="_VZJli3u5EeKQSp7Ms2hIBQ">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_VZJljHu5EeKQSp7Ms2hIBQ"><![CDATA[]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_VZJljXu5EeKQSp7Ms2hIBQ">_2_NotCompletedNotifyInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_VZJljnu5EeKQSp7Ms2hIBQ">
+        <bpmn2:targetRef>_2_NotStartedNotifyInput</bpmn2:targetRef>
+        <bpmn2:assignment id="_VZJlj3u5EeKQSp7Ms2hIBQ">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_VZJlkHu5EeKQSp7Ms2hIBQ"><![CDATA[[from:boss|tousers:|togroups:users|replyTo:boss|subject:Start this task ASAP|body:Hello,<br /><br />This task has been open for 3 hours. Please start it.<br /><br />Regards,<br /><br />DA BOSS]@[3h]]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_VZJlkXu5EeKQSp7Ms2hIBQ">_2_NotStartedNotifyInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:potentialOwner id="_VZJlknu5EeKQSp7Ms2hIBQ">
+        <bpmn2:resourceAssignmentExpression id="_VZJlk3u5EeKQSp7Ms2hIBQ">
+          <bpmn2:formalExpression id="_VZJllHu5EeKQSp7Ms2hIBQ">john</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="_1_2" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_1" targetRef="_2"/>
+    <bpmn2:scriptTask id="_3" drools:selectable="true" name="run script" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>_2_3</bpmn2:incoming>
+      <bpmn2:outgoing>_3_4</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("Process Instance ID: " + kcontext.getProcessInstance().getId());kcontext.getKnowledgeRuntime().insert(kcontext.getProcessInstance());]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="_2_3" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_2" targetRef="_3"/>
+    <bpmn2:businessRuleTask id="_4" drools:selectable="true" drools:ruleFlowGroup="businessRuleProcess-taskRules1" name="rules executed">
+      <bpmn2:incoming>_3_4</bpmn2:incoming>
+      <bpmn2:outgoing>_4_5</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:sequenceFlow id="_3_4" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_3" targetRef="_4"/>
+    <bpmn2:task id="_5" drools:selectable="true" drools:taskName="mySpecialTaskType" name="generic">
+      <bpmn2:incoming>_4_5</bpmn2:incoming>
+      <bpmn2:outgoing>_5_6</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_VZJllXu5EeKQSp7Ms2hIBQ">
+        <bpmn2:dataInput id="_5_TaskNameInput" name="TaskName" itemSubjectRef="__5_somethingInputItem" />
+        <bpmn2:dataInput id="_5_somethingInput" drools:dtype="String" itemSubjectRef="__5_somethingInputItem" name="something"/>
+        <bpmn2:dataInput id="_5_ruleExecutionInput" drools:dtype="String" itemSubjectRef="__5_ruleExecutionInputItem" name="ruleExecution"/>
+        <bpmn2:inputSet id="_VZJllnu5EeKQSp7Ms2hIBQ">
+          <bpmn2:dataInputRefs>_5_somethingInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_5_ruleExecutionInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_5_TaskNameInput</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_VZJll3u5EeKQSp7Ms2hIBQ"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_VZJlmHu5EeKQSp7Ms2hIBQ">
+        <bpmn2:targetRef>_5_TaskNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="_VZJlmXu5EeKQSp7Ms2hIBQ">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_VZJlmnu5EeKQSp7Ms2hIBQ">mySpecialTaskType</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_VZJlm3u5EeKQSp7Ms2hIBQ">_5_TaskNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_VZJlnHu5EeKQSp7Ms2hIBQ">
+        <bpmn2:targetRef>_5_somethingInput</bpmn2:targetRef>
+        <bpmn2:assignment id="_VZJlnXu5EeKQSp7Ms2hIBQ">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_VZJlnnu5EeKQSp7Ms2hIBQ"><![CDATA["33"]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_VZJln3u5EeKQSp7Ms2hIBQ">_5_somethingInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_VZJloHu5EeKQSp7Ms2hIBQ">
+        <bpmn2:sourceRef>processVar</bpmn2:sourceRef>
+        <bpmn2:targetRef>_5_ruleExecutionInput</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="_4_5" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_4" targetRef="_5"/>
+    <bpmn2:endEvent id="_6" drools:bgcolor="#ff6347" drools:selectable="true" name="end">
+      <bpmn2:incoming>_5_6</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="_5_6" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_5" targetRef="_6"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_VZJloXu5EeKQSp7Ms2hIBQ">
+    <bpmndi:BPMNPlane id="_VZKMkHu5EeKQSp7Ms2hIBQ" bpmnElement="com.multisupport.training.businessRuleProcess">
+      <bpmndi:BPMNShape id="_VZKMkXu5EeKQSp7Ms2hIBQ" bpmnElement="_1">
+        <dc:Bounds height="30.0" width="30.0" x="45.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_VZKMknu5EeKQSp7Ms2hIBQ" bpmnElement="_2">
+        <dc:Bounds height="80.0" width="100.0" x="120.0" y="75.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_VZKMk3u5EeKQSp7Ms2hIBQ" bpmnElement="_1_2">
+        <di:waypoint xsi:type="dc:Point" x="60.0" y="115.0"/>
+        <di:waypoint xsi:type="dc:Point" x="170.0" y="115.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_VZKMlHu5EeKQSp7Ms2hIBQ" bpmnElement="_3">
+        <dc:Bounds height="80.0" width="100.0" x="265.0" y="75.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_VZKMlXu5EeKQSp7Ms2hIBQ" bpmnElement="_2_3">
+        <di:waypoint xsi:type="dc:Point" x="170.0" y="115.0"/>
+        <di:waypoint xsi:type="dc:Point" x="315.0" y="115.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_VZKMlnu5EeKQSp7Ms2hIBQ" bpmnElement="_4">
+        <dc:Bounds height="80.0" width="100.0" x="410.0" y="75.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_VZKMl3u5EeKQSp7Ms2hIBQ" bpmnElement="_3_4">
+        <di:waypoint xsi:type="dc:Point" x="315.0" y="115.0"/>
+        <di:waypoint xsi:type="dc:Point" x="460.0" y="115.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_VZKMmHu5EeKQSp7Ms2hIBQ" bpmnElement="_5">
+        <dc:Bounds height="80.0" width="100.0" x="555.0" y="75.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_VZKMmXu5EeKQSp7Ms2hIBQ" bpmnElement="_4_5">
+        <di:waypoint xsi:type="dc:Point" x="460.0" y="115.0"/>
+        <di:waypoint xsi:type="dc:Point" x="605.0" y="115.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_VZKMmnu5EeKQSp7Ms2hIBQ" bpmnElement="_6">
+        <dc:Bounds height="28.0" width="28.0" x="700.0" y="101.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_VZKMm3u5EeKQSp7Ms2hIBQ" bpmnElement="_5_6">
+        <di:waypoint xsi:type="dc:Point" x="605.0" y="115.0"/>
+        <di:waypoint xsi:type="dc:Point" x="714.0" y="115.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
